@@ -1,0 +1,69 @@
+{
+    nome: "musica 1",
+    descricao: "teste 1",
+    canhoes: [
+        {
+            nome: "MH",
+            ip:"8.8.8.8",
+            parametros: [
+                {
+                    nome: "horizontal",
+                    canal: "1",
+                    valor: "123",
+                },{
+                    nome: "vertical",
+                    canal: "2",
+                    valor: "112",
+                },{
+                    nome: "tipoLuz",
+                    canal: "3",
+                    valor: "232",
+                },{
+                    nome: "red",
+                    canal: "4",
+                    valor: "232",
+                },{
+                    nome: "blue",
+                    canal: "5",
+                    valor: "232",
+                },{
+                    nome: "green",
+                    canal: "6",
+                    valor: "232",
+                }
+            ]
+        },{
+            nome: "pequeno",
+            ip:"8.8.8.8",
+            parametros: [
+                {
+                    nome: "horizontal",
+                    canal: "7",
+                    valor: "12",
+                },{
+                    nome: "vertical",
+                    canal: "8",
+                    valor: "121",
+                }
+            ]
+        },{
+            nome: "grande",
+            ip:"8.8.8.8",
+            parametros: [
+                {
+                    nome: "vermelho",
+                    canal: "9",
+                    valor: "233",
+                },{
+                    nome: "azul",
+                    canal: "10",
+                    valor: "211",
+                },{
+                    nome: "verde",
+                    canal: "11",
+                    valor: "231",
+                }
+            ]
+        }
+    ]
+}

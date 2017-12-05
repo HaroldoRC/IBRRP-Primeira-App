@@ -17,8 +17,7 @@ gulp.task('deps.js', () => {
     'node_modules/admin-lte/dist/js/app.min.js',
     'node_modules/admin-lte/plugins/bootstrap-slider/bootstrap-slider.js',
     'node_modules/admin-lte/dist/js/demo.js',
-
-    'node_modules/admin-lte/plugins/ionslider/ion.rangeSlider.min.js',
+    'node_modules/admin-lte/plugins/chartjs/Chart.js',
 
   ])
   .pipe(uglify())

@@ -1,6 +1,6 @@
 <content-header name="Dashboard" small="Versão {{ consts.version }}"></content-header>
 <section class="content" ng-controller="DashboardCtrl as dashboard">
-   <!--
+
       <div class="row">
         <value-box grid="4" color-class="bg-green" icon-class="fa fa-bank"
           value="R$ {{ dashboard.credit | number: 2  }}" text="Total de Créditos"></value-box>
@@ -9,86 +9,23 @@
         <value-box grid="4" color-class="bg-blue" icon-class="fa fa-money"
           value="R$ {{ dashboard.total | number: 2  }}" text="Valor Consolidado"></value-box>
       </div>
-      -->
-   <div class="row">
-      <div class="col-md-12">
-         <div class="box box-primary">
-            <div class="box-header">
-               <h3 class="box-title">Cenas</h3>
+      <div class="box box-success">
+        <div class="box-header">
+          <h3 class="box-title">Sumario Mensal</h3>
+          <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+          <div class="col-lg-12">
+            <div class="box-body">
+                <div class="chart">
+                  <canvas id="barChart" style="height: 211px; width: 537px;" width="483" height="189"></canvas>
+                </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-               <table class="table">
-                  <tbody>
-                     <tr>
-                        <th style="width: 10px">#</th>
-                        <th>Cena</th>
-                        <th>Descrição</th>
-                        <th style="width: 330px">Ações</th>
-                     </tr>
-                     <tr>
-                        <td>1.</td>
-                        <td>Update software</td>
-                        <td>ausdhuasdh</td>
-                        <td>
-                           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-                           Adicionar
-                           </button>
-                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">
-                           Excluir
-                           </button>
-                           <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default">
-                           Alterar
-                           </button>
-                           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                           Detalhes
-                           </button>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-            <!-- /.box-body -->
-         </div>
-         <!-- /.box -->
+          </div>
+        </div>
       </div>
-   </div>
-   <div class="row">
-      <div class="col-md-12">
-         <div class="box box-primary">
-            <div class="box-header">
-               <h3 class="box-title">Canhoes</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="col-md-4">
-              <div class="box-body no-padding">
-                <input type="text" value="0,100" class="slider form-control" data-slider-min="0" data-slider-max="255" data-slider-step="5" data-slider-value="[0,100]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="aqua" data-value="0,100" style="display: none;">
-              </div>
-            </div>
-            <!-- /.box-body -->
-         </div>
-         <!-- /.box -->
-      </div>
-   </div>
-   <!-- /.row -->
-   <div class="modal fade" id="modal-default">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">×</span></button>
-               <h4 class="modal-title">Default Modal</h4>
-            </div>
-            <div class="modal-body">
-               <p>One fine body…</p>
-            </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-               <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-         </div>
-         <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-   </div>
 </section>

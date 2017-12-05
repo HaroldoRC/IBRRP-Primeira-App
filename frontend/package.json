@@ -1,5 +1,5 @@
 {
-  "name": "angular1",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "production": "gulp --production"
   },
   "keywords": [],
-  "author": "",
+  "author": "Haroldo Ribeiro Costa",
   "license": "ISC",
   "devDependencies": {
     "admin-lte": "2.3.11",

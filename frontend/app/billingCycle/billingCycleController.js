@@ -11,7 +11,6 @@ angular.module('primeiraApp').controller('BillingCycleCtrl', [
 function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
 
   $scope.getBillingCycles = function() {
-    console.log('a sua mae')
     const page = parseInt($location.search().page) || 1
     const url = `${consts.apiUrl}/billingCycles?skip=${(page - 1) * 10}&limit=10`
     $http.get(url).then(function(resp) {
