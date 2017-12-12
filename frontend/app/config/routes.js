@@ -8,13 +8,9 @@ angular.module('primeiraApp').config([
     }).state('billingCycle', {
       url: "/billingCycles?page",
       templateUrl: "billingCycle/tabs.html"
-    }).state('cenaCanhoes', {
-      url: "/cenasCanhoes?page",
-      templateUrl: "cenaCanhoes/tabs.html"
-    }).state('cannon', {
-      url: "/cannon?page",
-      templateUrl: "cannon/tabs.html"
+    }).state('cannonScene', {
+      url: "/cannonScenes?page",
+      templateUrl: "cannonScene/tabs.html"
     })
-
     $urlRouterProvider.otherwise('/dashboard')
 }])

@@ -1,36 +1,35 @@
-angular.module('primeiraApp').controller('BillingCycleCtrl', [
+angular.module('primeiraApp').controller('CannasdasonSceneCtrl', [
   '$scope',
   '$http',
   '$location',
   'msgs',
   'tabs',
   'consts',
-  BillingCycleController
+  CannonSceneController
 ])
 
-function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
+function CannonSceneController($scope, $http, $location, msgs, tabs, consts) {
 
-  $scope.getBillingCycles = function() {
+  $scope.getCannonScene = function() {
     const page = parseInt($location.search().page) || 1
-    const url = `${consts.apiUrl}/billingCycles?skip=${(page - 1) * 10}&limit=10`
+    const url = `${consts.apiUrl}/cannonScenes?skip=${(page - 1) * 10}&limit=10`
     $http.get(url).then(function(resp) {
-      $scope.billingCycles = resp.data
-      $scope.billingCycle = {}
+      $scope.cannonScenes = resp.data
+      $scope.cannonScene = {}
       initCreditsAndDebts()
-      $http.get(`${consts.apiUrl}/billingCycles/count`).then(function(resp) {
+      $http.get(`${consts.apiUrl}/cannonScenes/count`).then(function(resp) {
         $scope.pages = Math.ceil(resp.data.value / 10)
         tabs.show($scope, {tabList: true, tabCreate: true})
-        
       })
     })
   }
 
-  $scope.createBillingCycle = function() {
-    const url = `${consts.apiUrl}/billingCycles`;
-    $http.post(url, $scope.billingCycle).then(function(response) {
-      $scope.billingCycle = {}
+  $scope.createCannonScene = function() {
+    const url = `${consts.apiUrl}/cannonScenes`;
+    $http.post(url, $scope.cannonScene).then(function(response) {
+      $scope.cannonScene = {}
       initCreditsAndDebts()
-      $scope.getBillingCycles()
+      $scope.getCannonScenes()
       msgs.addSuccess('Operação realizada com sucesso!!')
     }).catch(function(resp) {
       msgs.addError(resp.data.errors)
@@ -43,7 +42,7 @@ function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
     tabs.show($scope, {tabUpdate: true})
   }
 
-  $scope.updateBillingCycle = function() {
+  $scope.updateCannonScene = function() {
     const url = `${consts.apiUrl}/billingCycles/${$scope.billingCycle._id}`
     $http.put(url, $scope.billingCycle).then(function(response) {
       $scope.billingCycle = {}
@@ -76,69 +75,50 @@ function BillingCycleController($scope, $http, $location, msgs, tabs, consts) {
   }
 
   $scope.addDebt = function(index) {
-    $scope.billingCycle.debts.splice(index + 1, 0, {})
+    $scope.cannonScene.cannons.params.splice(index + 1, 0, {})
   }
 
-  $scope.cloneDebt = function(index, {name, value, status}) {
-    $scope.billingCycle.debts.splice(index + 1, 0, {name, value, status})
+  $scope.cloneDebt = function(index, {name, chanel, value}) {
+    $scope.cannonScene.cannons.params.splice(index + 1, 0, {name, chanel, value})
     initCreditsAndDebts()
   }
 
   $scope.deleteDebt = function(index) {
-    $scope.billingCycle.debts.splice(index, 1)
+    $scope.cannonScene.cannons.params.splice(index, 1)
     initCreditsAndDebts()
   }
 
   $scope.addCredit = function(index) {
-    $scope.billingCycle.credits.splice(index + 1, 0, {name: null, value: null})
+    $scope.cannonScene.cannons.splice(index + 1, 0, {name: null, value: null})
   }
 
   $scope.cloneCredit = function(index, {name, value}) {
-    $scope.billingCycle.credits.splice(index + 1, 0, {name, value})
+    $scope.cannonScene.cannons.splice(index + 1, 0, {name, value})
     initCreditsAndDebts()
   }
 
   $scope.deleteCredit = function(index) {
-    $scope.billingCycle.credits.splice(index, 1)
+    $scope.cannonScene.cannons.splice(index, 1)
     initCreditsAndDebts()
   }
 
   $scope.cancel = function() {
     tabs.show($scope, {tabList: true, tabCreate: true})
-    $scope.billingCycle = {}
+    $scope.cannonScene = {}
     initCreditsAndDebts()
   }
 
-  $scope.calculateValues = function() {
-    $scope.credit = 0
-    $scope.debt = 0
-
-    if($scope.billingCycle) {
-      $scope.billingCycle.credits.forEach(function({value}) {
-        $scope.credit += !value || isNaN(value) ? 0 : parseFloat(value)
-      })
-
-      $scope.billingCycle.debts.forEach(function({value}) {
-        $scope.debt += !value || isNaN(value) ? 0 : parseFloat(value)
-      })
-    }
-
-    $scope.total = $scope.credit - $scope.debt
-  }
-
   var initCreditsAndDebts = function() {
-    if(!$scope.billingCycle.debts || !$scope.billingCycle.debts.length) {
-      $scope.billingCycle.debts = []
-      $scope.billingCycle.debts.push({})
+    if(!$scope.cannonScene.cannons || !$scope.cannonScene.cannons.length) {
+      $scope.cannonScene.cannons = []
+      $scope.cannonScene.cannons.push({})
     }
 
-    if(!$scope.billingCycle.credits || !$scope.billingCycle.credits.length) {
-      $scope.billingCycle.credits = []
-      $scope.billingCycle.credits.push({})
+    if(!$scope.cannonScene.cannons.params || !$scope.cannonScene.cannons.params.length) {
+      $scope.cannonScene.cannons.params = []
+      $scope.cannonScene.cannons.params.push({})
     }
-
-    $scope.calculateValues()
   }
 
-  $scope.getBillingCycles()
+  $scope.getCannonScene()
 }

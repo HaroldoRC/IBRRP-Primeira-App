@@ -3,20 +3,19 @@ const mongoose = restful.mongoose
 
 const paramSchema = new mongoose.Schema({
   name: { type: String },
-  chanel: {type: Number },
+  channel: {type: Number },
   value: { type: Number }
 })
 
 const cannonSchema = new mongoose.Schema({
   name: { type: String },
   ip: { type: String },
-  chanel: { type: Number },
   params: [paramSchema]
 })
 
 const cannonSceneSchema = new mongoose.Schema({
-  name: { type: String },
-  desc: { type: String },
+  name: { type: String, required: true },
+  desc: { type: String, required: true },
   cannons: [cannonSchema]
 })
 

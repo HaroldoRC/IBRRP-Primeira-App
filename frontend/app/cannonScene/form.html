@@ -1,0 +1,23 @@
+<div role="form">
+    <div class="box-body">
+        <field id="nome" label="Nome" grid="12 6 4" placeholder="Informe o Nome"
+            model="csCtrl.cannonScene.name" readonly="csCtrl.tabDelete"></field>
+        <field id="desc" label="Descrição" grid="12 6 4" placeholder="Informe a Descrição"
+            model="csCtrl.cannonScene.desc" readonly="csCtrl.tabDelete"></field>
+        <div class="col-xs-12 col-sm-12">
+            <fieldset>
+                <legend>Canhões</legend>
+                <div ng-include="'cannonScene/cannonsList.html'"></div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="box-footer">
+        <button class="btn btn-primary" ng-click="csCtrl.create()"
+        ng-if="csCtrl.tabList">Incluir</button>
+        <button class="btn btn-info" ng-click="csCtrl.update()"
+        ng-if="csCtrl.tabUpdate">Alterar</button>
+        <button class="btn btn-danger" ng-if="csCtrl.tabDelete"
+            ng-click="csCtrl.delete()">Excluir</button>
+        <button class="btn btn-default" ng-click="csCtrl.refresh()">Cancelar</button>
+    </div>
+</div>

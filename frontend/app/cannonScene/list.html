@@ -1,0 +1,41 @@
+    <div class="box-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cannonScene in csCtrl.cannonScenes">
+              <td>{{:: cannonScene.name }}</td>
+              <td>{{:: cannonScene.desc }}</td>
+              <!--
+              <td>
+                  <tr ng-repeat="cannon in cannonScene.cannons">
+                      <td>{{:: cannon.name }}</td>
+                      <td>{{:: cannon.ip }}</td>
+                      <td>
+                          <tr ng-repeat="param in cannon.params">
+                              <td>{{:: param.name }}</td>
+                              <td>{{:: param.channel }}</td>
+                              <td>{{:: param.value }}</td>
+                          </tr>
+                      </td>
+                  </tr>
+              </td>
+              -->
+              <td class="table-actions">
+                <button class="btn btn-warning" ng-click="csCtrl.showTabUpdate(cannonScene)">
+                  <i class="fa fa-pencil"></i></button>
+                <button class="btn btn-danger" ng-click="csCtrl.showTabDelete(cannonScene)">
+                  <i class="fa fa-trash-o"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box-footer clearfix">
+         <paginator url="/#!/cannonScenes" pages="{{ pages }}"></paginator>
+      </div>      

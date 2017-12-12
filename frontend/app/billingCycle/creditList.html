@@ -1,4 +1,5 @@
 <div class="col-xs-12">
+
   <table class="table">
     <thead>
       <tr>
@@ -8,13 +9,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="credit in billingCycle.credits">
+      <tr ng-repeat="cannon in cannonScene.cannons">
         <td>
-          <input ng-model="credit.name" class="form-control" placeholder="Informe o Nome"
+          <input ng-model="cannon.name" class="form-control" placeholder="Informe o Nome"
             ng-readonly="tabDelete" />
         </td>
         <td>
-          <input ng-model="credit.value" class="form-control" placeholder="Informe a Valor"
+          <input ng-model="cannon.value" class="form-control" placeholder="Informe a Valor"
             ng-readonly="tabDelete" ng-change="calculateValues()" type="number" />
         </td>
         <td style="width:150px;" ng-if="!tabDelete">
@@ -26,6 +27,46 @@
           <button class="btn btn-success disabled"><i class="fa fa-plus"></i></button>
           <button class="btn btn-warning disabled"><i class="fa fa-clone"></i></button>
           <button class="btn btn-danger disabled"><i class="fa fa-trash-o"></i></button>
+        </td>
+        <td>
+          <div class="col-xs-12">
+            <table class="table">
+              <thead>
+                <tr>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="param in cannon">
+                  <td>
+                  <input ng-model="param.name" class="form-control" placeholder="Informe o Nome"
+                    ng-readonly="tabDelete" />
+                  </td>
+                  <td>
+                    <input ng-model="param.chanel" class="form-control" placeholder="Informe o Status"
+                      ng-readonly="tabDelete" />
+                  </td>
+                  <td>
+                    <input ng-model="param.value" class="form-control" placeholder="Informe a Valor"
+                      ng-readonly="tabDelete" ng-change="calculateValues()" type="number" />
+                  </td>
+                  <td style="width:150px;" ng-if="!tabDelete">
+                    <button class="btn btn-success" ng-click="addDebt($index)"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-warning" ng-click="cloneDebt($index,debt)"><i class="fa fa-clone"></i></button>
+                    <button class="btn btn-danger" ng-click="deleteDebt($index)"><i class="fa fa-trash-o"></i></button>
+                  </td>
+                  <td style="width:150px;" ng-if="tabDelete">
+                    <button class="btn btn-success disabled"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-warning disabled"><i class="fa fa-clone"></i></button>
+                    <button class="btn btn-danger disabled"><i class="fa fa-trash-o"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </td>
       </tr>
     </tbody>
