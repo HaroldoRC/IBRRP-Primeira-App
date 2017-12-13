@@ -1,6 +1,6 @@
 <content-header name="Dashboard" small="Versão {{ consts.version }}"></content-header>
 <section class="content" ng-controller="DashboardCtrl as dashboard">
-
+      <!--
       <div class="row">
         <value-box grid="4" color-class="bg-green" icon-class="fa fa-bank"
           value="R$ {{ dashboard.credit | number: 2  }}" text="Total de Créditos"></value-box>
@@ -28,4 +28,32 @@
           </div>
         </div>
       </div>
+      -->
+      <div class="col-lg-12">
+        <div class="box-body">
+          <div>
+                <h1>Nome</h1>
+                <h1>Descrição</h1>
+                <h1>Canhões</h1>
+                <h1>Ações</h1>
+          </div>
+          <div class="col-lg-11" ng-repeat="cannonScene in dashboard.cannonScenes">
+            <h2>{{:: cannonScene.desc }}</h2>
+            <div  class="col-lg-10"  ng-repeat="cannon in cannonScene.cannons">
+              <h3>{{:: cannon.name }}</h3>
+              <h3>{{:: cannon.ip }}</h3>
+              <div  class="col-lg-9"  ng-repeat="param in cannon.params">
+                <h4>{{:: param.name }}</h4>
+                <h4>{{:: param.channel }}</h4>
+                <h4>{{:: param.value }}</h4>
+              </div>
+            </div>
+            <button class="btn btn-warning" >
+              <i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger" >
+              <i class="fa fa-trash-o"></i></button>
+          </div>
+        </div>
+      </div>
+
 </section>

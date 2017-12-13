@@ -6,6 +6,8 @@ angular.module('primeiraApp').controller('DashboardCtrl', [
 
 function DashboardController($http, consts) {
   const vm = this
+  const url = `${consts.apiUrl}/cannonScenes`
+  
   vm.getSummary = function() {
     const url = `${consts.apiUrl}/billingSummary`;
     $http.get(url).then(function(response) {
@@ -16,7 +18,7 @@ function DashboardController($http, consts) {
     })
   }
 
-  vm.getSummary()
+  //vm.getSummary()
 
   vm.barChart = function() {
       const url = `${consts.apiUrl}/billingCycles`;
@@ -127,6 +129,22 @@ function DashboardController($http, consts) {
       })
   }
 
-  vm.barChart()
+  //vm.barChart()
+
+  vm.refresh = () => {
+    $http.get(url).then((response) => {
+        vm.cannonScenes = response.data
+        vm.cannonScene = { }
+        vm.cannonScene.cannons = []
+        vm.cannonScene.cannons.push({params: [{name: '',channel:'',value:''}]}) 
+        console.log(vm.cannonScenes[0].name)
+        console.log(vm.cannonScenes[0].cannons[0].name)
+        
+        console.log(vm.cannonScene.cannons)
+        console.log('vm.cannonScenes.cannons.params ' + vm.cannonScene.cannons[0].params)
+        
+    })
+  }
+  vm.refresh()
 
 }
