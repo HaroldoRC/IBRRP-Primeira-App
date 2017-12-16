@@ -48,11 +48,11 @@
                                     ng-readonly="csCtrl.tabDelete" type="number"/>
                                 </td>
                                 <td class="table-actions">
-                                    <button class="btn btn-success" ng-disabled="csCtrl.tabDelete"  ng-click="csCtrl.addParam($index, param)"> 
+                                    <button class="btn btn-success" ng-disabled="csCtrl.tabDelete"  ng-click="csCtrl.addParam($parent.$index, $index, param)"> 
                                         <i class="fa fa-plus"></i></button>
-                                    <button class="btn btn-warning" ng-disabled="csCtrl.tabDelete"  ng-click="csCtrl.cloneParam($index, param)"> 
+                                    <button class="btn btn-warning" ng-disabled="csCtrl.tabDelete"  ng-click="csCtrl.cloneParam($parent.$index, $index, param)"> 
                                         <i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger" ng-disabled="csCtrl.tabDelete"  ng-click="csCtrl.deleteParam($index)"> 
+                                    <button class="btn btn-danger" ng-disabled="csCtrl.tabDelete"  ng-click="csCtrl.deleteParam($parent.$index, $index)"> 
                                         <i class="fa fa-trash-o"></i></button>                    
                                 </td>    
                             </tr>

@@ -1,5 +1,1 @@
-angular.module('primeiraApp', [
-  'ui.router',
-  'ngAnimate',
-  'toastr'
-])
+angular.module('primeiraApp', ['ui.router','ngAnimate','toastr',])

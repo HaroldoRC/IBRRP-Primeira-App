@@ -15,10 +15,13 @@ gulp.task('deps.js', () => {
     'node_modules/admin-lte/bootstrap/js/bootstrap.min.js',
     'node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js',
     'node_modules/admin-lte/dist/js/app.min.js',
-    'node_modules/admin-lte/plugins/bootstrap-slider/bootstrap-slider.js',
     'node_modules/admin-lte/dist/js/demo.js',
     'node_modules/admin-lte/plugins/chartjs/Chart.js',
-
+    //slider
+    'node_modules/admin-lte/plugins/fastclick/fastclick.js',
+    //'node_modules/jquery-ui-1.12.1/external/jquery/jquery.js',
+    'node_modules/jquery-ui-1.12.1/jquery-ui.js',
+    
   ])
   .pipe(uglify())
   .pipe(concat('deps.min.js'))
@@ -32,9 +35,9 @@ gulp.task('deps.css', () => {
     'node_modules/admin-lte/bootstrap/css/bootstrap.min.css',
     'node_modules/admin-lte/dist/css/AdminLTE.min.css',
     'node_modules/admin-lte/dist/css/skins/_all-skins.min.css',
-    'node_modules/admin-lte/plugins/ionslider/ion.rangeSlider.css',
-    'node_modules/admin-lte/plugins/ionslider/ion.rangeSlider.skinNice.css',
-    'node_modules/admin-lte/plugins/bootstrap-slider/slider.css',
+    //slider
+    'node_modules/jquery-ui-1.12.1/jquery-ui.css',
+    
   ])
   .pipe(uglifycss({ "uglyComments": true }))
   .pipe(concat('deps.min.css'))

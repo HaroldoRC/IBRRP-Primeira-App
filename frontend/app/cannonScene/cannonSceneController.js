@@ -79,17 +79,17 @@
             }
             
         }
-        vm.addParam = function(index, {name, channel, value}) {
+        vm.addParam = function(pIndex, index, {name, channel, value}) {
             channel = channel +1
-            vm.cannonScene.cannons[index].params.splice(index + 1, 0, {channel})
+            vm.cannonScene.cannons[pIndex].params.splice(index + 1, 0, {channel})
         }
-        vm.cloneParam = function(index, {name, channel, value}) {
+        vm.cloneParam = function(pIndex, index, {name, channel, value}) {
             channel = channel +1
-            vm.cannonScene.cannons[index].params.splice(index + 1, 0, {name, channel, value})
+            vm.cannonScene.cannons[pIndex].params.splice(index + 1, 0, {name, channel, value})
         }
-        vm.deleteParam = function(index) {
-            if(vm.cannonScene.cannons[index].params.length >1){
-                vm.cannonScene.cannons[index].params.splice(index, 1)
+        vm.deleteParam = function(pIndex, index) {
+            if(vm.cannonScene.cannons[pIndex].params.length >1){
+                vm.cannonScene.cannons[pIndex].params.splice(index, 1)
             }
         }
         
