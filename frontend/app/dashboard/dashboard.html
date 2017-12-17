@@ -4,7 +4,7 @@
    <div role = form>
       <div class="box box-solid box-primary">
           <div class="box-header">
-              <h3 class="box-title">Painel de Controle</h3>
+              <h3 class="box-title">Painel de Controle - Canhões de Luz</h3>
 
               <div class="box-tools">
                   <!--<button type="button" class="btn btn-block btn-primary" ng-click="dashboard.slider()">Inicializar Slider</button>-->
@@ -42,9 +42,8 @@
                                             <td>{{:: param.name }}</td>
                                             <td>{{:: param.channel }}</td>
                                             <td>
-                                                <h2 class="demoHeaders">Slider</h2>
+                                                <input type="text" id="amount{{:: param._id }}" readonly style="border:0; color:#0a0908; font-weight:bold;" />
                                                 <div class="selector" id="{{:: param._id }}" ng-model="param.value"> {{dashboard.valorSlider}}</div>
-                                                <input type="text" class="amount" readonly style="border:0; color:#0a0908; font-weight:bold;" />
                                             </td>
                                           </tr>
                                        </tbody>
@@ -55,6 +54,8 @@
                         </table>
                      </td>
                      <td><button type="button" class="btn btn-block btn-primary" ng-click="dashboard.enviarCena(cannonScene)">Enviar Cena</button></td>
+                     <td><button type="button" class="btn btn-block btn-success" ng-click="dashboard.salvarCena(cannonScene)">Salvar Cena</button></td>
+                     
                   </tr>
                </tbody>
             </table>

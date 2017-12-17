@@ -11,9 +11,7 @@
         const vm = this
         const url = `${consts.apiUrl}/cannonScenes`
         
-        console.log('controller')
         vm.create = function() {
-            console.log('create!')
             $http.post(url, vm.cannonScene).then(function(response){
                 vm.refresh()
                 msgs.addSuccess('Operação realizada com sucesso!')
@@ -48,21 +46,16 @@
                 vm.cannonScene = { }
                 vm.cannonScene.cannons = []
                 vm.cannonScene.cannons.push({params: [{name: '',channel:'',value:''}]}) 
-                console.log(vm.cannonScene)
-                console.log(vm.cannonScene.cannons)
-                console.log('vm.cannonScenes.cannons.params ' + vm.cannonScene.cannons[0].params)
                 
                 tabs.show(vm, {tabList: true, tabCreate: true})
             })
         }
         
         vm.showTabUpdate = (cannonScene)=> {
-            console.log('showTabUpdate')
             vm.cannonScene = cannonScene
             tabs.show(vm, {tabUpdate: true})
         }
         vm.showTabDelete = (cannonScene) => {
-            console.log('showTabDelete')
             vm.cannonScene = cannonScene
             tabs.show(vm, {tabDelete: true})
         }

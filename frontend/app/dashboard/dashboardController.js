@@ -2,10 +2,11 @@ angular.module('primeiraApp').controller('DashboardCtrl', [
   '$http',
   '$timeout',
   'consts',
+  'msgs',
   DashboardController
 ])
 
-function DashboardController($http, $timeout, consts) {
+function DashboardController($http, $timeout, consts, msgs) {
   const vm = this
   const url = `${consts.apiUrl}/cannonScenes`
   vm.cannonScenes = {}
@@ -16,17 +17,10 @@ function DashboardController($http, $timeout, consts) {
       vm.cannonScene = { }
       vm.cannonScene.cannons = []
       vm.cannonScene.cannons.push({params: [{name: '',channel:'',value:''}]}) 
-      console.log(vm.cannonScenes[0].name)
-      console.log(vm.cannonScenes[0].cannons[0].name)
-        
-      console.log(vm.cannonScene.cannons)
-      console.log('vm.cannonScenes.cannons.params ' + vm.cannonScene.cannons[0].params)
     })
   }
 
   function slider() {
-    console.log('asdasdasdasdasdasdasdasdasdasdasdasdadasd' + vm.cannonScenes)
-    
     vm.cannonScenes.forEach(function(scene) {
       scene.cannons.forEach(function(cannon){
         cannon.params.forEach(function(param){
@@ -37,13 +31,12 @@ function DashboardController($http, $timeout, consts) {
             max: 255,
             values: param.value,
             step: 5,
-            //change: function( event, ui ) {},
             slide: function( event, ui ) {
               param.value = ui.value
-              $( ".amount" ).val( ui.value )
+              $( `#amount${id}` ).val( ui.value )
             },
-            
           })
+          $( `#amount${id}` ).val( param.value )
           
         }, this)
       }, this)
@@ -51,16 +44,28 @@ function DashboardController($http, $timeout, consts) {
   }
 
   vm.enviarCena = (cannonScene) =>{
-    console.log('enviando')
     let string = ''
 
-    cannonScene.cannons.forEach(function(element) {
-      element.params.forEach(function(param){
-        string += 'C'+param.channel
-        string += 'W'+param.value
+    cannonScene.cannons.forEach(function(cannon) {
+      cannon.params.forEach(function(param){
+        string += param.channel+'c'
+        string += param.value+'w'
       },this)
+      let urlEnviar = `http://${cannon.ip}`
     }, this)
+
+    console.log(`$http.post(${urlEnviar}, ${string})`)
     console.log(string)
+    msgs.addSuccess('Cena enviada com sucesso!')
+  }
+
+  vm.salvarCena = (cannonScene) => {
+    const urlUpdate = `http://localhost:3003/api/cannonScenes/${cannonScene._id}`
+    $http.put(urlUpdate, cannonScene).then((response) => {
+      msgs.addSuccess('Cena salva com sucesso!')
+    }).catch(function(resp) {
+      msgs.addError(resp.data.errors)
+    })
   }
 
   vm.initController = () =>{

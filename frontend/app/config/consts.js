@@ -1,9 +1,9 @@
 angular.module('primeiraApp').constant('consts', {
-  appName: 'MEAN - Primeira Aplicação',
+  appName: 'IBRRP - Primeira Aplicação',
   version: '1.0',
-  owner: 'Cod3r',
+  owner: 'IBRRP',
   year: '2017',
-  site: 'http://cod3r.com.br',
+  site: 'https://www.ibrrp.com.br',
   //apiUrl: 'http://billingcycle.jelasticlw.com.br/api',
   apiUrl: 'http://localhost:3003/api',
 }).run(['$rootScope', 'consts', function($rootScope, consts) {
