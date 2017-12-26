@@ -11,6 +11,9 @@ angular.module('primeiraApp').config([
     }).state('cannonScene', {
       url: "/cannonScenes?page",
       templateUrl: "cannonScene/tabs.html"
+    }).state('joystick', {
+      url: "/joystick",
+      templateUrl: "joystick/joystick.html"
     })
     $urlRouterProvider.otherwise('/dashboard')
 }])

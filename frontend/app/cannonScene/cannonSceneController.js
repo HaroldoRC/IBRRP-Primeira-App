@@ -19,7 +19,7 @@
                 msgs.addError(response.data.errors)
             })
         }
-        
+
         vm.delete = () => {
             const deleteUrl = `${url}/${vm.cannonScene._id}`
             $http.delete(deleteUrl, vm.cannonScene).then((response) => {

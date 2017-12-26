@@ -1,17 +1,17 @@
 <content-header name="Dashboard" small="Versão {{ consts.version }}"></content-header>
 <section class="content" ng-controller="DashboardCtrl as dashboard">
 
-   <div role = form>
+   <div role = "form" >
       <div class="box box-solid box-primary">
           <div class="box-header">
-              <h3 class="box-title">Painel de Controle - Canhões de Luz</h3>
-
+              <h3 class="box-title">Painel de Controle - Canhões de Luz {{count}}</h3>
+                
               <div class="box-tools">
-                  <!--<button type="button" class="btn btn-block btn-primary" ng-click="dashboard.slider()">Inicializar Slider</button>-->
+                  <button type="button" class="btn btn-block btn-primary" ng-click="dashboard.luz()">Ligar MH</button>
               </div>
             </div>
          <div class="box-body">
-            <table class="table">
+            <table class="table" >
                <tbody>
                   <tr>
                      <th>Nome Cena</th>
@@ -39,11 +39,11 @@
                                              <th style="width:300px">Valor</th>
                                           </tr>
                                           <tr ng-repeat="param in cannon.params">
-                                            <td>{{:: param.name }}</td>
-                                            <td>{{:: param.channel }}</td>
-                                            <td>
+                                            <td ng-if="param.channel === 1 || param.channel === 3 || param.channel === 8">{{:: param.name }}</td>
+                                            <td ng-if="param.channel === 1 || param.channel === 3 || param.channel === 8">{{:: param.channel }}</td>
+                                            <td ng-if="param.channel === 1 || param.channel === 3 || param.channel === 8">
                                                 <input type="text" id="amount{{:: param._id }}" readonly style="border:0; color:#0a0908; font-weight:bold;" />
-                                                <div class="selector" id="{{:: param._id }}" ng-model="param.value"> {{dashboard.valorSlider}}</div>
+                                                <div class="selector" id="{{:: param._id }}" ng-model="param.value" > {{dashboard.valorSlider}}</div> 
                                             </td>
                                           </tr>
                                        </tbody>
@@ -61,6 +61,5 @@
             </table>
          </div>
       </div>
-   </div>
    </div>
 </section>

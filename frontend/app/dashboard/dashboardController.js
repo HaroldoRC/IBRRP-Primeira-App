@@ -16,22 +16,47 @@ function DashboardController($http, $timeout, consts, msgs) {
       vm.cannonScenes = response.data
       vm.cannonScene = { }
       vm.cannonScene.cannons = []
-      vm.cannonScene.cannons.push({params: [{name: '',channel:'',value:''}]}) 
+      vm.cannonScene.cannons.push({params: [{name: '',channel:'',value:''}]})
+      vm.paramsList = []
+      vm.cannonScenes.forEach(function(scene) {
+        scene.cannons.forEach(function(cannon) {
+          cannon.params.forEach(function(param) {
+            if(param.channel === 1 || param.channel === 3 || param.channel === 8 ){
+              console.log(param.value)
+              vm.paramsList.push(param)
+            }
+          }, this);
+        }, this);
+      }, this);
     })
   }
 
   function slider() {
+    let urlEnviar = ''
     vm.cannonScenes.forEach(function(scene) {
       scene.cannons.forEach(function(cannon){
+        urlEnviar = `http://${cannon.ip}/`
         cannon.params.forEach(function(param){
           let id = param._id
           $( `#${id}` ).slider({
             range: false,
             min: 0,
             max: 255,
-            values: param.value,
-            step: 5,
+            values: [param.value],
+            step: 1,
             slide: function( event, ui ) {
+              console.log('slider mudando')
+              let req = {
+                method: 'POST',
+                url: urlEnviar,
+                headers: {
+                  'Content-Type': 'text/plain'
+                },
+                data: `${param.channel}c${param.value}w`
+               }
+              $http(req).then((respose) => {
+              }).catch((resp)=>{
+              })
               param.value = ui.value
               $( `#amount${id}` ).val( ui.value )
             },
@@ -42,21 +67,35 @@ function DashboardController($http, $timeout, consts, msgs) {
       }, this)
     }, this)
   }
+  
 
   vm.enviarCena = (cannonScene) =>{
     let string = ''
-
+    let urlEnviar = ''
     cannonScene.cannons.forEach(function(cannon) {
+      string = ''
       cannon.params.forEach(function(param){
         string += param.channel+'c'
         string += param.value+'w'
       },this)
-      let urlEnviar = `http://${cannon.ip}`
+      urlEnviar = `http://${cannon.ip}/`
+      let req = {
+        method: 'POST',
+        url: urlEnviar,
+        headers: {
+          'Content-Type': 'text/plain'
+        },
+        data: string
+       }
+       console.log(string)
+      $http(req).then((respose) => {
+      }).catch((resp)=>{
+      })
     }, this)
 
-    console.log(`$http.post(${urlEnviar}, ${string})`)
-    console.log(string)
-    msgs.addSuccess('Cena enviada com sucesso!')
+    
+
+    //console.log(`$http.post(${urlEnviar}, ${string})`)
   }
 
   vm.salvarCena = (cannonScene) => {
@@ -68,9 +107,26 @@ function DashboardController($http, $timeout, consts, msgs) {
     })
   }
 
+  vm.luz = () => {
+    let req = {
+      method: 'POST',
+      url: `http://192.168.15.177/`,
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      data: '8c255w'
+     }
+    $http(req).then((respose) => {
+      
+    }).catch((resp)=>{
+    })
+  }
+  
   vm.initController = () =>{
     vm.refresh() 
     setTimeout(slider, 1000)
+    console.log('asdasd')
+    setTimeout(vm.keyCode, 1000)
   }
   vm.initController()
   
